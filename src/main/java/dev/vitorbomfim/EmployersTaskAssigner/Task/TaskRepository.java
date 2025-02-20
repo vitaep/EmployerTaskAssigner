@@ -1,4 +1,6 @@
 package dev.vitorbomfim.EmployersTaskAssigner.Task;
 
-public class TaskRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface TaskRepository extends JpaRepository<TaskModel, Long> {
 }

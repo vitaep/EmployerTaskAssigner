@@ -1,4 +1,6 @@
 package dev.vitorbomfim.EmployersTaskAssigner.Employer;
 
-public class EmployerRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface EmployerRepository extends JpaRepository<EmployerModel, Long> {
 }
