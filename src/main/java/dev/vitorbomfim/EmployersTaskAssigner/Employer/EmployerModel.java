@@ -1,5 +1,6 @@
 package dev.vitorbomfim.EmployersTaskAssigner.Employer;
 
+import dev.vitorbomfim.EmployersTaskAssigner.Task.TaskModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,7 +30,7 @@ public class EmployerModel {
     @Column(name = "function")
     private String function;
 
-    @ManyToOne
+    @ManyToOne // um funcionário tem uma única tarefa.
     @JoinColumn(name = "task_id")
     private TaskModel task;
 
