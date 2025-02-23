@@ -21,6 +21,7 @@ public class EmployerModel {
     @Column(name = "name")
     private String name;
 
+    //UNIQUE, BUT ADDED DIRECTLY TO DATABASE THIS CONFIG
     @Column(name = "document")
     private String document;
 
