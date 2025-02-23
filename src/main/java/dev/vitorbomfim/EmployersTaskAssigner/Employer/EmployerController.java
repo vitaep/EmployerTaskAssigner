@@ -18,9 +18,9 @@ public class EmployerController {
 
 // Add employer (CREATE)
 
-    @PostMapping("/add")
-    public String addEmployer(){
-        return "Employer added";
+    @PostMapping("/post")
+    public EmployerModel addEmployer(@RequestBody EmployerModel employerModel){
+        return employerService.addEmployer(employerModel);
     }
 
     // Get all employers (READ)

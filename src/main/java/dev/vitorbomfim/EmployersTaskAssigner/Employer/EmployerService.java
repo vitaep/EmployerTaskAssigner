@@ -1,5 +1,6 @@
 package dev.vitorbomfim.EmployersTaskAssigner.Employer;
 
+import dev.vitorbomfim.EmployersTaskAssigner.Task.TaskModel;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,6 +26,8 @@ public class EmployerService {
         return employerById.orElse(null);
     }
 
-
+    public EmployerModel addEmployer(EmployerModel model){
+        return employerRepository.save(model);
+    }
 
 }
