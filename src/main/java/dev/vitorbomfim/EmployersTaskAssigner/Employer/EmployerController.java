@@ -3,13 +3,8 @@ package dev.vitorbomfim.EmployersTaskAssigner.Employer;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping
+@RequestMapping("/employer")
 public class EmployerController {
-
-    @GetMapping("/employeeRegister")
-    public String helloWorld() {
-        return "Hello World";
-    }
 
     // Add employer (CREATE)
 
@@ -34,7 +29,7 @@ public class EmployerController {
 
     // Update employer data (UPDATE)
 
-    @PutMapping("/updateEmployer")
+    @PutMapping("/update")
     public String updateEmployer(){
         return "Employer updated";
     }
