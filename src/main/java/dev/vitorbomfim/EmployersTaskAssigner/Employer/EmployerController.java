@@ -2,11 +2,21 @@ package dev.vitorbomfim.EmployersTaskAssigner.Employer;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/employer")
 public class EmployerController {
 
-    // Add employer (CREATE)
+    //DEPENDENCIES INJECTION
+
+    private EmployerService employerService;
+
+    public EmployerController(EmployerService employerService) {
+        this.employerService = employerService;
+    }
+
+// Add employer (CREATE)
 
     @PostMapping("/add")
     public String addEmployer(){
@@ -16,15 +26,15 @@ public class EmployerController {
     // Get all employers (READ)
 
     @GetMapping("/get")
-    public String getEmployer(){
-        return "Employers";
+    public List<EmployerModel> getEmployer(){
+        return employerService.getEmployers();
     }
 
     // Search employer by id (READ)
 
-    @GetMapping("/getId")
-    public String getEmployerById(){
-        return "Employers by id";
+    @GetMapping("/get/{id}")
+    public EmployerModel getEmployerById(@PathVariable Long id){
+            return employerService.listEmployerById(id);
     }
 
     // Update employer data (UPDATE)
