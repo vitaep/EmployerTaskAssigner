@@ -9,9 +9,11 @@ import java.util.Optional;
 @Service
 public class EmployerService {
 
+    private EmployerMapper employerMapper;
     private EmployerRepository employerRepository;
 
-    public EmployerService(EmployerRepository employerRepository) {
+    public EmployerService(EmployerMapper employerMapper, EmployerRepository employerRepository) {
+        this.employerMapper = employerMapper;
         this.employerRepository = employerRepository;
     }
 
@@ -28,8 +30,10 @@ public class EmployerService {
 
 
     // Add employer
-    public EmployerModel addEmployer(EmployerModel model){
-        return employerRepository.save(model);
+    public EmployerDTO addEmployer(EmployerDTO employerDTO){
+        EmployerModel employer = employerMapper.map(employerDTO);
+        employer = employerRepository.save(employer);
+        return employerMapper.map(employer);
     }
 
     // Delete employer
