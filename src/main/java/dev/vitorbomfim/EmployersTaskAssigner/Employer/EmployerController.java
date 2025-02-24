@@ -46,9 +46,9 @@ public class EmployerController {
 
     // Delete employer (DELETE)
 
-    @DeleteMapping("/deleteId")
-    public String deleteEmployerById(){
-        return "Employer deleted by id";
+    @DeleteMapping("/delete/{id}")
+    public void deleteEmployerById(@PathVariable Long id){
+        employerService.deleteEmployerById(id);
     }
 
 }

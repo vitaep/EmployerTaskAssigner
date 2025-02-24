@@ -26,8 +26,16 @@ public class EmployerService {
         return employerById.orElse(null);
     }
 
+
+    // Add employer
     public EmployerModel addEmployer(EmployerModel model){
         return employerRepository.save(model);
     }
+
+    // Delete employer
+    public void deleteEmployerById(Long id){
+        employerRepository.deleteById(id);
+    }
+
 
 }
