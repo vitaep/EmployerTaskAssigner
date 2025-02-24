@@ -2,9 +2,7 @@ package dev.vitorbomfim.EmployersTaskAssigner.Employer;
 
 import dev.vitorbomfim.EmployersTaskAssigner.Task.TaskModel;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -35,4 +33,7 @@ public class EmployerModel {
     @JoinColumn(name = "task_id")
     private TaskModel task;
 
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

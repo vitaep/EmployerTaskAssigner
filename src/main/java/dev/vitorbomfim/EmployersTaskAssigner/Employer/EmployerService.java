@@ -37,5 +37,14 @@ public class EmployerService {
         employerRepository.deleteById(id);
     }
 
+    // Update employer
+    public EmployerModel updateEmployer(Long id, EmployerModel updatedEmployer){
+        if (employerRepository.existsById(id)) {
+            updatedEmployer.setId(id);
+            return employerRepository.save(updatedEmployer);
+        }
+        return null;
+    }
+
 
 }

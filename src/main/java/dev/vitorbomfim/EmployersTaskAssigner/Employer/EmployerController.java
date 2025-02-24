@@ -39,9 +39,9 @@ public class EmployerController {
 
     // Update employer data (UPDATE)
 
-    @PutMapping("/update")
-    public String updateEmployer(){
-        return "Employer updated";
+    @PutMapping("/update/{id}")
+    public EmployerModel updateEmployer(@PathVariable Long id, @RequestBody EmployerModel employerModel){
+        return employerService.updateEmployer(id, employerModel);
     }
 
     // Delete employer (DELETE)
