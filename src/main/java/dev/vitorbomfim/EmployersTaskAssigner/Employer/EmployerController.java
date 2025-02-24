@@ -19,29 +19,29 @@ public class EmployerController {
 // Add employer (CREATE)
 
     @PostMapping("/post")
-    public EmployerModel addEmployer(@RequestBody EmployerModel employerModel){
-        return employerService.addEmployer(employerModel);
+    public EmployerDTO addEmployer(@RequestBody EmployerDTO employerDTO){
+        return employerService.addEmployer(employerDTO);
     }
 
     // Get all employers (READ)
 
     @GetMapping("/get")
-    public List<EmployerModel> getEmployer(){
+    public List<EmployerDTO> getEmployer(){
         return employerService.getEmployers();
     }
 
     // Search employer by id (READ)
 
     @GetMapping("/get/{id}")
-    public EmployerModel getEmployerById(@PathVariable Long id){
+    public EmployerDTO getEmployerById(@PathVariable Long id){
             return employerService.listEmployerById(id);
     }
 
     // Update employer data (UPDATE)
 
     @PutMapping("/update/{id}")
-    public EmployerModel updateEmployer(@PathVariable Long id, @RequestBody EmployerModel employerModel){
-        return employerService.updateEmployer(id, employerModel);
+    public EmployerDTO updateEmployer(@PathVariable Long id, @RequestBody EmployerDTO employerDTO){
+        return employerService.updateEmployer(id, employerDTO);
     }
 
     // Delete employer (DELETE)
