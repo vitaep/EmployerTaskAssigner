@@ -43,10 +43,6 @@ public class EmployerService {
 
     // Delete employer
     public void deleteEmployerById(Long id){
-        if(!employerRepository.existsById(id)){
-            throw new EntityNotFoundException("Employer with id: " + id + " has not found.");
-        }
-
             employerRepository.deleteById(id);
     }
 
