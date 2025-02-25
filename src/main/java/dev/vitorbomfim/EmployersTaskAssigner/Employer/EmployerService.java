@@ -1,9 +1,12 @@
 package dev.vitorbomfim.EmployersTaskAssigner.Employer;
 
 import dev.vitorbomfim.EmployersTaskAssigner.Task.TaskModel;
+import dev.vitorbomfim.EmployersTaskAssigner.Task.TaskRepository;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -13,7 +16,11 @@ import java.util.stream.Stream;
 @Service
 public class EmployerService {
 
+    @Autowired
+    private TaskRepository taskRepository;
+    @Autowired
     private EmployerMapper employerMapper;
+    @Autowired
     private EmployerRepository employerRepository;
 
     public EmployerService(EmployerMapper employerMapper, EmployerRepository employerRepository) {
@@ -27,7 +34,7 @@ public class EmployerService {
         return employer.stream().map(employerMapper::map).collect(Collectors.toList());
     }
 
-    // List ninja by id
+    // List employer by id
     public EmployerDTO listEmployerById(Long id){
         Optional<EmployerModel> employerById = employerRepository.findById(id);
         return employerById.map(employerMapper::map).orElse(null);

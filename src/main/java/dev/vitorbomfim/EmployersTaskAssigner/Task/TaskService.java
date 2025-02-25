@@ -1,5 +1,6 @@
 package dev.vitorbomfim.EmployersTaskAssigner.Task;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.config.Task;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +13,15 @@ import java.util.stream.Collectors;
 public class TaskService {
 
     // DEPENDENCIES INJECTION
+
     private TaskMapper taskMapper;
     private TaskRepository taskRepository;
 
+    @Autowired
+    public TaskService(TaskRepository taskRepository, TaskMapper taskMapper) {
+        this.taskRepository = taskRepository;
+        this.taskMapper = taskMapper;
+    }
 
     // List all tasks
 
