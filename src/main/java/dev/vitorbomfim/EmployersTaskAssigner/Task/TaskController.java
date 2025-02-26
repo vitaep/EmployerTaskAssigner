@@ -4,6 +4,8 @@ import dev.vitorbomfim.EmployersTaskAssigner.Employer.EmployerDTO;
 import dev.vitorbomfim.EmployersTaskAssigner.Employer.EmployerModel;
 import dev.vitorbomfim.EmployersTaskAssigner.Employer.EmployerRepository;
 import dev.vitorbomfim.EmployersTaskAssigner.Employer.EmployerService;
+import jakarta.persistence.EntityExistsException;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.Id;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -71,16 +73,22 @@ public class TaskController {
     // Delete task (DELETE)
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteTaskById(@PathVariable Long id){
+    public ResponseEntity<String> deleteTaskById(@PathVariable Long id) {
 
-        if(taskService.getTaskById(id) != null){
-            taskService.deleteTask(id);
-            return ResponseEntity.ok("The task on ID:" + id + " has been success deleted");
-        } else {
+        // VERIFY IF TASK EXISTS
+        TaskDTO task = taskService.getTaskById(id);
+        if (task == null){
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body("ERROR! The task on ID: " + id + " does not exist.");
         }
+
+        //VERIFY IF THE TASK HAS ASSIGNER TO A EMPLOYER
+
+            if (employerService.existByTaskId(id)) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                        .body("ERROR! The task on ID: " + id + " is assigned to an employee. Please try again once they have completed the task.");
+            }
+                taskService.deleteTask(id);
+                return ResponseEntity.ok("The task on ID:" + id + " is successful deleted.");
     }
-
-
 }

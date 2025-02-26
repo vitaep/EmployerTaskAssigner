@@ -23,7 +23,8 @@ public class EmployerService {
     @Autowired
     private EmployerRepository employerRepository;
 
-    public EmployerService(EmployerMapper employerMapper, EmployerRepository employerRepository) {
+    public EmployerService(TaskRepository taskRepository, EmployerMapper employerMapper, EmployerRepository employerRepository) {
+        this.taskRepository = taskRepository;
         this.employerMapper = employerMapper;
         this.employerRepository = employerRepository;
     }
@@ -40,6 +41,16 @@ public class EmployerService {
         return employerById.map(employerMapper::map).orElse(null);
     }
 
+    public EmployerDTO findEmployerByTaskId(Long id){
+        EmployerModel employerModel = employerRepository.findEmployerByTaskId(id)
+                .orElseThrow(() -> new EntityNotFoundException("No employer found for task ID: " + id));
+        return employerMapper.map(employerModel);
+
+    }
+
+    public boolean existByTaskId(Long taskId) {
+        return employerRepository.existsByTaskId(taskId);
+    }
 
     // Add employer
     public EmployerDTO addEmployer(EmployerDTO employerDTO){

@@ -33,7 +33,4 @@ public class EmployerModel {
     @JoinColumn(name = "task_id")
     private TaskModel task;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 }
