@@ -53,7 +53,7 @@ public class EmployerController {
 
     // Update employer data (UPDATE)
 
-    @PutMapping("/update/{id}")
+    @PatchMapping("/update/{id}")
     public ResponseEntity<?> updateEmployer(@PathVariable Long id, @RequestBody EmployerDTO employerUpdated){
         EmployerDTO employerDTO = employerService.updateEmployer(id, employerUpdated);
 

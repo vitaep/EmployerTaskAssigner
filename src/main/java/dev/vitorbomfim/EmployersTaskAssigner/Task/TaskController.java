@@ -57,9 +57,9 @@ public class TaskController {
         }
     }
 
-    // Update task data (UPDATE)
+    // Update task data (UPDATE PUT)
 
-    @PutMapping("/update/{id}")
+    @PatchMapping("/update/{id}")
     public ResponseEntity<?> updateTask(@PathVariable Long id, @RequestBody TaskDTO updatedTask){
         TaskDTO taskDTO = taskService.taskUpdate(id, updatedTask);
         if(taskDTO != null){
