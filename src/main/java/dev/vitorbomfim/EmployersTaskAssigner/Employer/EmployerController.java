@@ -1,5 +1,6 @@
 package dev.vitorbomfim.EmployersTaskAssigner.Employer;
 
+import io.swagger.v3.oas.annotations.Operation;
 import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -22,6 +23,7 @@ public class EmployerController {
 
 // Add employer (CREATE)
 
+    @Operation(summary = "Add a employee", description = "This route add employers into database")
     @PostMapping("/post")
     public ResponseEntity<String> addEmployer(@RequestBody EmployerDTO employerDTO){
       EmployerDTO employerDT = employerService.addEmployer(employerDTO);
@@ -31,6 +33,7 @@ public class EmployerController {
 
     // Get all employers (READ)
 
+    @Operation(summary = "Get all employers", description = "Get the list of all employers registered on database")
     @GetMapping("/get")
     public ResponseEntity<List<EmployerDTO>> getEmployer(){
         List<EmployerDTO> getEmployer = employerService.getEmployers();
@@ -39,6 +42,7 @@ public class EmployerController {
 
     // Search employer by id (READ)
 
+    @Operation(summary = "Get a employee by ID", description = "This route get the employee into database by ID")
     @GetMapping("/get/{id}")
     public ResponseEntity<?> getEmployerById(@PathVariable Long id){
             EmployerDTO employerDTO = employerService.listEmployerById(id);
@@ -53,6 +57,7 @@ public class EmployerController {
 
     // Update employer data (UPDATE)
 
+    @Operation(summary = "Update a employee by ID", description = "This route update the employee into database by ID")
     @PatchMapping("/update/{id}")
     public ResponseEntity<?> updateEmployer(@PathVariable Long id, @RequestBody EmployerDTO employerUpdated){
         EmployerDTO employerDTO = employerService.updateEmployer(id, employerUpdated);
@@ -66,7 +71,7 @@ public class EmployerController {
     }
 
     // Delete employer (DELETE)
-
+    @Operation(summary = "Delete a employee by ID", description = "This route delete the employee into database by ID")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteEmployerById(@PathVariable Long id){
 
