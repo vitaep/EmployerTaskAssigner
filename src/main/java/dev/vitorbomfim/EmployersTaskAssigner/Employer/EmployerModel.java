@@ -8,6 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 @Data
 @Entity
+@ToString(exclude = "task")
 @Table(name = "tb_employer")
 public class EmployerModel {
 
