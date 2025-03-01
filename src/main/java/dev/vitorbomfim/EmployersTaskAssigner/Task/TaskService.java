@@ -14,8 +14,8 @@ public class TaskService {
 
     // DEPENDENCIES INJECTION
 
-    private TaskMapper taskMapper;
-    private TaskRepository taskRepository;
+    private final TaskMapper taskMapper;
+    private final TaskRepository taskRepository;
 
     @Autowired
     public TaskService(TaskRepository taskRepository, TaskMapper taskMapper) {

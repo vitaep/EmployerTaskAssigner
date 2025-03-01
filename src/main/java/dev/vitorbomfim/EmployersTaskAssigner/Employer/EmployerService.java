@@ -17,11 +17,11 @@ import java.util.stream.Stream;
 public class EmployerService {
 
     @Autowired
-    private TaskRepository taskRepository;
+    private final TaskRepository taskRepository;
     @Autowired
-    private EmployerMapper employerMapper;
+    private final EmployerMapper employerMapper;
     @Autowired
-    private EmployerRepository employerRepository;
+    private final EmployerRepository employerRepository;
 
     public EmployerService(TaskRepository taskRepository, EmployerMapper employerMapper, EmployerRepository employerRepository) {
         this.taskRepository = taskRepository;
